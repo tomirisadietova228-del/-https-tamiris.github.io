@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Про котов itle>
+  <style>
+    :root{--bg:#f7f7fb;--card:#ffffff;--accent:#ff6b6b;--text:#222}
+    *{box-sizing:border-box}
+    body{font-family:Inter, system-ui, Arial, sans-serif;margin:0;background:var(--bg);color:var(--text);line-height:1.4}
+    header{background:linear-gradient(90deg,#ffd3d3,#fff6f6);padding:28px 16px;text-align:center;border-bottom:1px solid rgba(0,0,0,0.05)}
+    h1{margin:0;font-size:28px}
+    p.lead{margin:8px 0 0;color:#555}
+    .container{max-width:1000px;margin:28px auto;padding:0 16px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+    .card{background:var(--card);padding:12px;border-radius:12px;box-shadow:0 6px 18px rgba(20,20,40,0.06);overflow:hidden}
+    .card img{width:100%;height:160px;object-fit:cover;border-radius:8px}
+    .card h3{margin:10px 0 6px;font-size:18px}
+    .card p{margin:0;color:#555;font-size:14px}
+    footer{padding:18px;text-align:center;color:#666;font-size:14px}
+    .hero{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+    .hero .hero-img{flex:1;min-width:220px}
+    .hero .hero-text{flex:2}
+    .btn{display:inline-block;padding:8px 12px;border-radius:8px;background:var(--accent);color:white;text-decoration:none;font-weight:600}
+    .search{display:flex;gap:8px;margin:12px 0}
+    .search input{flex:1;padding:8px;border-radius:8px;border:1px solid #ddd}
+    .center{display:flex;justify-content:center}
+    @media (max-width:520px){.hero{flex-direction:column-reverse}.card img{height:140px}}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Мир котиков 🐱</h1>
+    <p class="lead"> Сайт о кошках — факты и немного милоты.</p>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-text">
+        <h2>Добро пожаловать!</h2>
+        <p>Здесь собраны милые фотографии котов, короткие факты и советы по уходу.</p>
+        <div class="search">
+          <input id="search" placeholder="Поиск по названию (например: сиамский)" />
+          <button class="btn" onclick="applySearch()">Найти</button>
+        </div>
+      </div>
+      <div class="hero-img center">
+        
+      </div>
+    </section>
+
+    <h2 style="margin-top:22px">Галерея</h2>
+    <div id="gallery" class="grid">
+      <div class="card" data-name="сиамский">
+        
+        <h3>Сиамский</h3>
+        <p>Изящные ушки и яркие глаза — сиамские кошки разговорчивы и очень привязаны к хозяину.</p>
+      </div>
+
+      <div class="card" data-name="британский">
+        
+        <h3>Британский</h3>
+        <p>Короткая густая шерсть и спокойный характер. Отлично подойдёт для семьи.</p>
+      </div>
+
+      <div class="card" data-name="мейн-кун">
+        
+        <h3>Мейн-кун</h3>
+        <p>Огромные и пушистые, эти коты выглядят как маленькие львы, но очень дружелюбны.</p>
+      </div>
+
+      <div class="card" data-name="британский короткошерстный">
+        
+        <h3>Дворовый милый</h3>
+        <p>Любые уличные или домашние коты — настоящие герои повседневной жизни.</p>
+      </div>
+    </div>
+
+    <h2 style="margin-top:22px">Несколько фактов</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Факт 1</h3>
+        <p>Коты спят до 16 часов в сутки — это помогает им экономить энергию для охоты (даже если они дома).</p>
+      </div>
+      <div class="card">
+        <h3>Факт 2</h3>
+        <p>У котов есть «позвоночные» усы — вибриссы — которые помогают ориентироваться в тёмноте.</p>
+      </div>
+      <div class="card">
+        <h3>Факт 3</h3>
+        <p>Многие кошки любят высоту — наблюдать за ними с полки или кресла им очень нравится.</p>
+      </div>
+    </div>
+
+    <h2 style="margin-top:22px">Контакты</h2>
+    <div class="card">
+      <p>Если хочешь связаться со мной — просто вставь своё сообщение ниже (форма не отправляет данные, это пример для ИКТ).</p>
+      <form onsubmit="event.preventDefault();alert('Спасибо! Сообщение собрано локально.')">
+        <input placeholder="Ваше имя" style="padding:8px;border-radius:8px;border:1px solid #ddd;width:100%;margin-bottom:8px" />
+        <textarea placeholder="Сообщение" style="padding:8px;border-radius:8px;border:1px solid #ddd;width:100%;height:80px"></textarea>
+        <div style="margin-top:8px;text-align:right"><button class="btn">Отправить</button></div>
+      </form>
+    </div>
+
+  </main>
+
+  <footer>
+    © 2025 — Лёгкий сайт про котов. Сделано для проекта по ИКТ.
+  </footer>
+
+  <script>
+    function applySearch(){
+      const q = document.getElementById('search').value.trim().toLowerCase();
+      const cards = document.querySelectorAll('#gallery .card');
+      if(!q){cards.forEach(c=>c.style.display='block');return}
+      cards.forEach(c=>{
+        const name = c.getAttribute('data-name') || '';
+        if(name.toLowerCase().includes(q) || c.querySelector('h3').textContent.toLowerCase().includes(q)){
+          c.style.display='block'
+        } else c.style.display='none'
+      })
+    }
+  </script>
+</body>
+</html>
